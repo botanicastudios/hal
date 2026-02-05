@@ -297,6 +297,28 @@ const FRAGMENT_SHADER = `
     return value;
   }
 
+  float sdRoundRect(vec2 p, vec2 b, float r) {
+    vec2 q = abs(p) - b;
+    return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;
+  }
+
+  float roundRectMask(vec2 p, vec2 halfSize, float radius, float softness) {
+    float d = sdRoundRect(p, halfSize, radius);
+    float aa = 2.0 / min(u_resolution.x, u_resolution.y);
+    float m = 1.0 - smoothstep(0.0, aa + softness, d);
+    float depth = min(halfSize.x, halfSize.y) * 0.85;
+    float taper = 1.0 - smoothstep(-depth, 0.0, d);
+    return m * taper;
+  }
+
+  float ringMask(vec2 p, vec2 center, float radius, float halfWidth, float softness) {
+    float d = abs(length(p - center) - radius);
+    float aa = 2.0 / min(u_resolution.x, u_resolution.y);
+    float m = 1.0 - smoothstep(halfWidth, halfWidth + aa + softness, d);
+    float taper = 1.0 - smoothstep(0.0, halfWidth, d);
+    return m * taper;
+  }
+
   void main() {
     vec2 uv = v_uv * 2.0 - 1.0;
     float dist = length(uv);
@@ -412,77 +434,73 @@ const FRAGMENT_SHADER = `
     float bottomShadow = smoothstep(-0.7, 0.4, uv.y);
     color *= bottomShadow * 0.3 + 0.7;
 
-    // Glass reflections (HAL 9000 style) - hard, distinct light reflections
+    // Glass reflections (HAL 9000 lens) - soft, curved, layered highlights
     if (u_reflections > 0.0) {
-      float ref = 0.0;
+      // Slight warp to make reflections feel like they live on glass, not a flat overlay
+      vec2 rp = uv;
+      rp += normal.xy * (0.065 * (1.0 - z));
+      rp.y *= 1.03;
 
-      // Main top arc - wide curved fluorescent tube reflection
-      // Using a thick arc shape
-      float topArcRadius = 0.52;
-      vec2 topArcCenter = vec2(0.0, -0.08);
-      float topArcDist = length(uv - topArcCenter);
-      float topArc = step(topArcRadius - 0.025, topArcDist) * step(topArcDist, topArcRadius + 0.025);
-      topArc *= step(0.28, uv.y); // Only show upper portion
-      topArc *= step(-0.38, uv.x) * step(uv.x, 0.38); // Limit width
-      ref += topArc;
+      float soft = 0.014;
+      float refCore = 0.0;
+      float refGlow = 0.0;
 
-      // Left side arc reflection
-      float leftArcRadius = 0.38;
-      vec2 leftArcCenter = vec2(0.15, 0.0);
-      float leftArcDist = length(uv - leftArcCenter);
-      float leftArc = step(leftArcRadius - 0.018, leftArcDist) * step(leftArcDist, leftArcRadius + 0.018);
-      leftArc *= step(-0.42, uv.x) * step(uv.x, -0.18); // Left side only
-      leftArc *= step(0.0, uv.y) * step(uv.y, 0.32); // Vertical range
-      ref += leftArc * 0.9;
+      // Main top fluorescent tube arc (thick + inner band)
+      float top = ringMask(rp, vec2(0.0, 0.06), 0.66, 0.020, soft * 0.55);
+      float topY = smoothstep(0.30, 0.48, rp.y);
+      top *= topY;
+      top *= (1.0 - smoothstep(0.52, 0.76, abs(rp.x)));
+      float topInner = ringMask(rp, vec2(0.0, 0.08), 0.62, 0.012, soft * 0.45);
+      topInner *= topY;
+      topInner *= (1.0 - smoothstep(0.48, 0.72, abs(rp.x)));
+      float topHalo = ringMask(rp, vec2(0.0, 0.06), 0.66, 0.054, soft * 2.0) * topY;
+      topHalo *= (1.0 - smoothstep(0.40, 0.78, abs(rp.x)));
 
-      // Right side arc reflection
-      vec2 rightArcCenter = vec2(-0.15, 0.0);
-      float rightArcDist = length(uv - rightArcCenter);
-      float rightArc = step(leftArcRadius - 0.018, rightArcDist) * step(rightArcDist, leftArcRadius + 0.018);
-      rightArc *= step(0.18, uv.x) * step(uv.x, 0.42); // Right side only
-      rightArc *= step(0.0, uv.y) * step(uv.y, 0.32); // Vertical range
-      ref += rightArc * 0.9;
+      refCore += top * 1.10 + topInner * 0.85;
+      refGlow += topHalo * 0.55;
 
-      // Small rectangular dash reflections - hard rectangles
-      // Upper left dash
-      vec2 d1 = abs(uv - vec2(-0.22, 0.42));
-      float dash1 = step(d1.x, 0.06) * step(d1.y, 0.018);
-      ref += dash1 * 0.85;
+      // Side arcs (subtle, like lens curvature catching strip lights)
+      float sideL = ringMask(rp, vec2(0.20, 0.02), 0.48, 0.010, soft * 0.55);
+      sideL *= smoothstep(-0.02, 0.16, rp.y) * (1.0 - smoothstep(0.24, 0.40, rp.y));
+      sideL *= smoothstep(-0.56, -0.38, rp.x) * (1.0 - smoothstep(-0.18, -0.04, rp.x));
+      refCore += sideL * 0.55;
+      refGlow += ringMask(rp, vec2(0.20, 0.02), 0.48, 0.030, soft * 1.6) * sideL * 0.30;
 
-      // Upper right dash
-      vec2 d2 = abs(uv - vec2(0.22, 0.42));
-      float dash2 = step(d2.x, 0.06) * step(d2.y, 0.018);
-      ref += dash2 * 0.85;
+      float sideR = ringMask(rp, vec2(-0.20, 0.02), 0.48, 0.010, soft * 0.55);
+      sideR *= smoothstep(-0.02, 0.16, rp.y) * (1.0 - smoothstep(0.24, 0.40, rp.y));
+      sideR *= smoothstep(0.04, 0.18, rp.x) * (1.0 - smoothstep(0.38, 0.56, rp.x));
+      refCore += sideR * 0.55;
+      refGlow += ringMask(rp, vec2(-0.20, 0.02), 0.48, 0.030, soft * 1.6) * sideR * 0.30;
 
-      // Middle left small dash
-      vec2 d3 = abs(uv - vec2(-0.38, 0.18));
-      float dash3 = step(d3.x, 0.035) * step(d3.y, 0.012);
-      ref += dash3 * 0.7;
+      // Small dash reflections (softened + slightly rounded)
+      float dTopL = roundRectMask(rp - vec2(-0.25, 0.62), vec2(0.115, 0.018), 0.012, soft * 0.75);
+      float dTopR = roundRectMask(rp - vec2(0.25, 0.62), vec2(0.115, 0.018), 0.012, soft * 0.75);
+      float dTopC = roundRectMask(rp - vec2(0.0, 0.53), vec2(0.080, 0.015), 0.011, soft * 0.75);
+      float dMidL = roundRectMask(rp - vec2(-0.40, 0.22), vec2(0.040, 0.014), 0.010, soft * 0.8);
+      float dMidR = roundRectMask(rp - vec2(0.40, 0.22), vec2(0.040, 0.014), 0.010, soft * 0.8);
+      float dLowL = roundRectMask(rp - vec2(-0.30, -0.06), vec2(0.030, 0.012), 0.010, soft * 0.75);
+      float dLowR = roundRectMask(rp - vec2(0.30, -0.06), vec2(0.030, 0.012), 0.010, soft * 0.75);
+      float dBot = roundRectMask(rp - vec2(0.0, -0.36), vec2(0.050, 0.016), 0.012, soft * 0.75);
 
-      // Middle right small dash
-      vec2 d4 = abs(uv - vec2(0.38, 0.18));
-      float dash4 = step(d4.x, 0.035) * step(d4.y, 0.012);
-      ref += dash4 * 0.7;
+      refCore += dTopL * 0.88 + dTopR * 0.88 + dTopC * 0.55;
+      refCore += dMidL * 0.62 + dMidR * 0.62;
+      refCore += dLowL * 0.48 + dLowR * 0.48;
+      refCore += dBot * 0.34;
 
-      // Lower left tiny dash
-      vec2 d5 = abs(uv - vec2(-0.28, -0.05));
-      float dash5 = step(d5.x, 0.025) * step(d5.y, 0.01);
-      ref += dash5 * 0.6;
+      refGlow += roundRectMask(rp - vec2(-0.25, 0.62), vec2(0.140, 0.030), 0.016, soft * 2.0) * 0.20;
+      refGlow += roundRectMask(rp - vec2(0.25, 0.62), vec2(0.140, 0.030), 0.016, soft * 2.0) * 0.20;
+      refGlow += roundRectMask(rp - vec2(0.0, 0.53), vec2(0.110, 0.028), 0.016, soft * 2.0) * 0.12;
 
-      // Lower right tiny dash
-      vec2 d6 = abs(uv - vec2(0.28, -0.05));
-      float dash6 = step(d6.x, 0.025) * step(d6.y, 0.01);
-      ref += dash6 * 0.6;
+      // Fresnel-boosted strength (stronger near the edges, like real glass)
+      float edgeBoost = mix(0.35, 1.0, clamp(fresnel * 2.4, 0.0, 1.0));
+      float refMask = clamp(refCore, 0.0, 1.0);
+      float glowMask = clamp(refGlow, 0.0, 1.0);
+      float strength = u_reflections * edgeBoost;
 
-      // Bottom center small reflection
-      vec2 d7 = abs(uv - vec2(0.0, -0.35));
-      float dash7 = step(d7.x, 0.04) * step(d7.y, 0.015);
-      ref += dash7 * 0.5;
-
-      ref = min(ref, 1.0) * u_reflections;
-
-      // Hard white overlay
-      color = mix(color, vec3(1.0), ref);
+      // Additive highlight + gentle lift (avoids the "flat white sticker" look)
+      vec3 refColor = vec3(1.0);
+      color += refColor * (refMask * 0.70 + glowMask * 0.26) * strength;
+      color = mix(color, vec3(1.0), (refMask * 0.12 + glowMask * 0.07) * strength);
     }
 
     // Tone mapping

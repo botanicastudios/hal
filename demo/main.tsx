@@ -20,7 +20,7 @@ function App() {
     }
     return 'dark';
   });
-  const [heroPreset, setHeroPreset] = useState<HALPreset>('thinking');
+  const [heroPreset, setHeroPreset] = useState<HALPreset>('listening');
   const [playgroundPreset, setPlaygroundPreset] = useState<HALPreset>('idle');
   const [baseColor, setBaseColor] = useState('#3b82f6');
   const [listeningColor, setListeningColor] = useState('#ef4444');
@@ -73,7 +73,7 @@ function App() {
       {/* Hero */}
       <section className="hero">
         <div className="hero-orb">
-          <HAL preset={heroPreset} size={280} reflections={showReflections} />
+          <HAL preset={heroPreset} size={280} reflections={{ enabled: true, intensity: 0.85 }} />
         </div>
         <h1>AI Persona Orb</h1>
         <p>A beautiful, animated WebGL component for React. Perfect for AI assistants, voice interfaces, and creative applications.</p>

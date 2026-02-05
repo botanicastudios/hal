@@ -1,0 +1,238 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]: HAL
+    - generic [ref=e5]:
+      - button "Dark mode" [ref=e6] [cursor=pointer]: 🌙
+      - button "Light mode" [ref=e7] [cursor=pointer]: ☀️
+  - generic [ref=e8]:
+    - heading "AI Persona Orb" [level=1] [ref=e11]
+    - paragraph [ref=e12]: A beautiful, animated WebGL component for React. Perfect for AI assistants, voice interfaces, and creative applications.
+    - generic [ref=e13]:
+      - button "idle" [ref=e14] [cursor=pointer]
+      - button "listening" [ref=e15] [cursor=pointer]
+      - button "thinking" [ref=e16] [cursor=pointer]
+      - button "speaking" [ref=e17] [cursor=pointer]
+      - button "asleep" [ref=e18] [cursor=pointer]
+  - generic [ref=e19]:
+    - generic [ref=e20]:
+      - heading "Presets" [level=2] [ref=e21]
+      - paragraph [ref=e22]: Five carefully crafted animation states for different contexts
+    - generic [ref=e23]:
+      - generic [ref=e26]: idle
+      - generic [ref=e29]: listening
+      - generic [ref=e32]: thinking
+      - generic [ref=e35]: speaking
+      - generic [ref=e38]: asleep
+  - generic [ref=e39]:
+    - generic [ref=e40]:
+      - heading "Colors" [level=2] [ref=e41]
+      - paragraph [ref=e42]: Automatic color scheme generation from any base color
+    - generic [ref=e43]:
+      - generic [ref=e46]: Blue
+      - generic [ref=e49]: Purple
+      - generic [ref=e52]: Green
+      - generic [ref=e55]: Orange
+      - generic [ref=e58]: Pink
+      - generic [ref=e61]: Mono
+  - generic [ref=e62]:
+    - generic [ref=e63]:
+      - heading "Glass Reflections" [level=2] [ref=e64]
+      - paragraph [ref=e65]: Optional HAL 9000-style glass reflections for that classic sci-fi look
+    - generic [ref=e66]:
+      - generic [ref=e69]: Without Reflections
+      - generic [ref=e72]: With Reflections
+  - generic [ref=e73]:
+    - generic [ref=e74]:
+      - heading "Playground" [level=2] [ref=e75]
+      - paragraph [ref=e76]: Explore all component options and customize every parameter
+    - generic [ref=e79]:
+      - generic [ref=e80]:
+        - generic [ref=e81]:
+          - generic [ref=e82]: preset
+          - generic [ref=e83]: HALPreset
+        - generic [ref=e84]:
+          - button "idle" [ref=e85] [cursor=pointer]
+          - button "listening" [ref=e86] [cursor=pointer]
+          - button "thinking" [ref=e87] [cursor=pointer]
+          - button "speaking" [ref=e88] [cursor=pointer]
+          - button "asleep" [ref=e89] [cursor=pointer]
+      - generic [ref=e90]:
+        - generic [ref=e91]:
+          - generic [ref=e92]: size
+          - generic [ref=e93]: number
+          - generic [ref=e94]: 220px
+        - slider [ref=e95] [cursor=pointer]: "220"
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - generic [ref=e98]: color / presetColors
+          - generic [ref=e99]: string / object
+        - generic [ref=e100]:
+          - generic [ref=e101]: Base Color
+          - textbox [ref=e102] [cursor=pointer]: "#3b82f6"
+          - generic [ref=e103]: Listening
+          - textbox [ref=e104] [cursor=pointer]: "#ef4444"
+      - generic [ref=e105]:
+        - generic [ref=e106]:
+          - generic [ref=e107]: reflections
+          - generic [ref=e108]: boolean | HALReflectionOptions
+        - button "Disabled" [ref=e110] [cursor=pointer]
+      - generic [ref=e111]:
+        - generic [ref=e112]:
+          - generic [ref=e113]: transitionSpeed
+          - generic [ref=e114]: number
+          - generic [ref=e115]: 1.0x
+        - slider [ref=e116] [cursor=pointer]: "1"
+      - generic [ref=e118]:
+        - generic [ref=e119]: animation
+        - generic [ref=e120]: HALAnimationParams
+        - button "Preset Default" [ref=e121] [cursor=pointer]
+  - generic [ref=e122]:
+    - generic [ref=e123]:
+      - heading "API Reference" [level=2] [ref=e124]
+      - paragraph [ref=e125]: Complete props documentation
+    - table [ref=e127]:
+      - rowgroup [ref=e128]:
+        - row "Prop Type Default Description" [ref=e129]:
+          - columnheader "Prop" [ref=e130]
+          - columnheader "Type" [ref=e131]
+          - columnheader "Default" [ref=e132]
+          - columnheader "Description" [ref=e133]
+      - rowgroup [ref=e134]:
+        - row "preset 'idle' | 'listening' | 'thinking' | 'speaking' | 'asleep' 'idle' Animation preset state" [ref=e135]:
+          - cell "preset" [ref=e136]:
+            - code [ref=e137]: preset
+          - cell "'idle' | 'listening' | 'thinking' | 'speaking' | 'asleep'" [ref=e138]:
+            - code [ref=e139]: "'idle' | 'listening' | 'thinking' | 'speaking' | 'asleep'"
+          - cell "'idle'" [ref=e140]:
+            - code [ref=e141]: "'idle'"
+          - cell "Animation preset state" [ref=e142]
+        - row "size number 300 Size in pixels (sets both width and height)" [ref=e143]:
+          - cell "size" [ref=e144]:
+            - code [ref=e145]: size
+          - cell "number" [ref=e146]:
+            - code [ref=e147]: number
+          - cell "300" [ref=e148]:
+            - code [ref=e149]: "300"
+          - cell "Size in pixels (sets both width and height)" [ref=e150]
+        - row "width number — Width in pixels (overrides size)" [ref=e151]:
+          - cell "width" [ref=e152]:
+            - code [ref=e153]: width
+          - cell "number" [ref=e154]:
+            - code [ref=e155]: number
+          - cell "—" [ref=e156]
+          - cell "Width in pixels (overrides size)" [ref=e157]
+        - row "height number — Height in pixels (overrides size)" [ref=e158]:
+          - cell "height" [ref=e159]:
+            - code [ref=e160]: height
+          - cell "number" [ref=e161]:
+            - code [ref=e162]: number
+          - cell "—" [ref=e163]
+          - cell "Height in pixels (overrides size)" [ref=e164]
+        - row "color string — Base color as hex (e.g., \"#3b82f6\")" [ref=e165]:
+          - cell "color" [ref=e166]:
+            - code [ref=e167]: color
+          - cell "string" [ref=e168]:
+            - code [ref=e169]: string
+          - cell "—" [ref=e170]
+          - cell "Base color as hex (e.g., \"#3b82f6\")" [ref=e171]
+        - 'row "presetColors { [preset]: string } — Override colors for specific presets" [ref=e172]':
+          - cell "presetColors" [ref=e173]:
+            - code [ref=e174]: presetColors
+          - 'cell "{ [preset]: string }" [ref=e175]':
+            - code [ref=e176]: "{ [preset]: string }"
+          - cell "—" [ref=e177]
+          - cell "Override colors for specific presets" [ref=e178]
+        - row "colorScheme HALColorScheme — Direct RGB control with base, mid, highlight" [ref=e179]:
+          - cell "colorScheme" [ref=e180]:
+            - code [ref=e181]: colorScheme
+          - cell "HALColorScheme" [ref=e182]:
+            - code [ref=e183]: HALColorScheme
+          - cell "—" [ref=e184]
+          - cell "Direct RGB control with base, mid, highlight" [ref=e185]
+        - row "reflections boolean | HALReflectionOptions false Enable HAL 9000-style glass reflections" [ref=e186]:
+          - cell "reflections" [ref=e187]:
+            - code [ref=e188]: reflections
+          - cell "boolean | HALReflectionOptions" [ref=e189]:
+            - code [ref=e190]: boolean | HALReflectionOptions
+          - cell "false" [ref=e191]:
+            - code [ref=e192]: "false"
+          - cell "Enable HAL 9000-style glass reflections" [ref=e193]
+        - row "animation HALAnimationParams — Fine-grained animation control" [ref=e194]:
+          - cell "animation" [ref=e195]:
+            - code [ref=e196]: animation
+          - cell "HALAnimationParams" [ref=e197]:
+            - code [ref=e198]: HALAnimationParams
+          - cell "—" [ref=e199]
+          - cell "Fine-grained animation control" [ref=e200]
+        - row "transitionSpeed number 1.0 Transition speed multiplier" [ref=e201]:
+          - cell "transitionSpeed" [ref=e202]:
+            - code [ref=e203]: transitionSpeed
+          - cell "number" [ref=e204]:
+            - code [ref=e205]: number
+          - cell "1.0" [ref=e206]:
+            - code [ref=e207]: "1.0"
+          - cell "Transition speed multiplier" [ref=e208]
+        - row "className string — CSS class name" [ref=e209]:
+          - cell "className" [ref=e210]:
+            - code [ref=e211]: className
+          - cell "string" [ref=e212]:
+            - code [ref=e213]: string
+          - cell "—" [ref=e214]
+          - cell "CSS class name" [ref=e215]
+        - row "style CSSProperties — Inline styles" [ref=e216]:
+          - cell "style" [ref=e217]:
+            - code [ref=e218]: style
+          - cell "CSSProperties" [ref=e219]:
+            - code [ref=e220]: CSSProperties
+          - cell "—" [ref=e221]
+          - cell "Inline styles" [ref=e222]
+  - generic [ref=e223]:
+    - generic [ref=e224]:
+      - heading "Usage Examples" [level=2] [ref=e225]
+      - paragraph [ref=e226]: Common patterns and configurations
+    - generic [ref=e227]:
+      - generic [ref=e228]:
+        - generic [ref=e229]: Basic
+        - generic [ref=e230]:
+          - text: // Simple preset
+          - text: <HAL preset="listening" />
+          - text: // Custom size
+          - text: "<HAL preset=\"speaking\" size={200} />"
+      - generic [ref=e231]:
+        - generic [ref=e232]: Custom Colors
+        - generic [ref=e233]:
+          - text: // Base color
+          - text: <HAL color="#8b5cf6" />
+          - text: // Per-preset colors
+          - text: <HAL
+          - text: "presetColors=={{"
+          - text: "listening: \"#22c55e\""
+          - text: "}}"
+          - text: />
+      - generic [ref=e234]:
+        - generic [ref=e235]: Reflections
+        - generic [ref=e236]:
+          - text: // Enable reflections
+          - text: <HAL reflections />
+          - text: // Custom intensity
+          - text: <HAL
+          - text: "reflections=={{"
+          - text: "enabled: true,"
+          - text: "intensity: 0.8"
+          - text: "}}"
+          - text: />
+      - generic [ref=e237]:
+        - generic [ref=e238]: Animation Control
+        - generic [ref=e239]:
+          - text: <HAL
+          - text: preset="idle"
+          - text: "animation=={{"
+          - text: "highlightSize: 0.8,"
+          - text: "highlightDrift: 0,"
+          - text: "cloudSpeed: 0.5"
+          - text: "}}"
+          - text: />
+  - contentinfo [ref=e240]:
+    - text: Heavily inspired by
+    - link "Vercel's AI Elements" [ref=e241] [cursor=pointer]:
+      - /url: https://elements.ai-sdk.dev/

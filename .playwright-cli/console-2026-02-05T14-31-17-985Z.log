@@ -1,0 +1,43 @@
+[     174ms] [DEBUG] [vite] connecting... @ http://localhost:5175/@vite/client:494
+[     188ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5175/@fs/Users/toby/Code/projects/hal/node_modules/.vite/deps/react-dom_client.js?v=62d6ca57:21548
+[    1263ms] [DEBUG] [vite] connected. @ http://localhost:5175/@vite/client:617
+[    1263ms] [WARNING] [.WebGL-0x13c00477200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels @ http://localhost:5175/:0
+[    1264ms] [WARNING] [.WebGL-0x13c00474800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels @ http://localhost:5175/:0
+[    1264ms] [WARNING] [.WebGL-0x13c00476c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels @ http://localhost:5175/:0
+[    1264ms] [WARNING] [.WebGL-0x13c00478a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat) @ http://localhost:5175/:0
+[    1264ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5175/favicon.ico:0
+[  238826ms] [DEBUG] [vite] connecting... @ http://localhost:5175/@vite/client:494
+[  238828ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5175/@fs/Users/toby/Code/projects/hal/node_modules/.vite/deps/react-dom_client.js?v=62d6ca57:21548
+[  238917ms] [DEBUG] [vite] connected. @ http://localhost:5175/@vite/client:617
+[  325599ms] [ERROR] WebSocket connection to 'ws://localhost:5175/?token=NGG9rs68zwRL' failed:  @ http://localhost:5175/@vite/client:535
+[  325605ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:5175/@vite/client:559
+[  326594ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  328186ms] [DEBUG] [vite] connecting... @ http://localhost:5175/@vite/client:494
+[  328195ms] [DEBUG] [vite] connected. @ http://localhost:5175/@vite/client:617
+[  328198ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5175/@fs/Users/toby/Library/Application%20Support/northflare-runner/git/worktrees/local__hal__66d786947ba7/task_ydno1bn1te092av7hxyxi15s/node_modules/.vite/deps/react-dom_client.js?v=227c4cfb:21548
+[  562374ms] [ERROR] WebSocket connection to 'ws://localhost:5175/?token=eoyi4K-LeZhp' failed:  @ http://localhost:5175/@vite/client:535
+[  562378ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:5175/@vite/client:559
+[  563508ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  564505ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  565503ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  566506ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  567507ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  568508ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  569509ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  570509ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  571515ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  572512ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  573514ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  574516ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  575519ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  576522ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  577521ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  578521ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  579524ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  580524ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  581527ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  582528ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  583529ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5175/:0
+[  620313ms] [DEBUG] [vite] connecting... @ http://localhost:5175/@vite/client:494
+[  620315ms] [DEBUG] [vite] connected. @ http://localhost:5175/@vite/client:617
+[  620329ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5175/@fs/Users/toby/Library/Application%20Support/northflare-runner/git/worktrees/local__hal__66d786947ba7/task_ydno1bn1te092av7hxyxi15s/node_modules/.vite/deps/react-dom_client.js?v=227c4cfb:21548
